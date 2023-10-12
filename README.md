@@ -17,6 +17,8 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Setting up Jest and React Testing Library
+
+
 ```bash
 npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-event jest jest-environment-jsdom ts-jest
 ```
@@ -103,3 +105,6 @@ describe('Home', () => {
     })
 })
 ```
+
+Reference:
+[Next.js with React Testing Library, Jest, TypeScript - Dave Gray](https://www.youtube.com/watch?v=AS79oJ3Fcf0)
