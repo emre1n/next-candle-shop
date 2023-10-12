@@ -16,21 +16,90 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Setting up Jest and React Testing Library
+```bash
+npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-event jest jest-environment-jsdom ts-jest
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Create a `jest.config.js` file in your project's root directory and add the following (use `.js` file extention instead of `.mjs` and convert imports to commonJS imports to fix the import bug):
 
-## Learn More
+```typescript
+const nextJest = require('next/jest');
 
-To learn more about Next.js, take a look at the following resources:
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+});
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+// Add any custom config to be passed to Jest
+/** @type {import('jest').Config} */
+const config = {
+  // Add more setup options before each test is run
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  testEnvironment: 'jest-environment-jsdom',
 
-## Deploy on Vercel
+  // For TypeScript
+  preset: 'ts-jest',
+};
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(config);
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Add the following preset for TypeScript to config object:
+
+```typescript
+  // For TypeScript
+  preset: 'ts-jest',
+```
+
+Create a `jest.setup.js` file and add the following import:
+
+```typescript
+import '@testing-library/jest-dom';
+```
+
+### Setting up eslint jest and testing library plugins
+
+```bash
+npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library
+```
+Add the `testing-library/react` and `jest-dom/recommended` plugins to `.eslintrc.json` file:
+
+```json
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended"
+  ]
+}
+```
+
+### Write the first test `Home.test.jsx` in the `__tests__` folder
+
+```typescript
+import { render, screen } from '@testing-library/react'
+import Home from '@/app/page'
+
+// AAA (Arrange, Act, Assert) method
+
+describe('Home', () => {
+    it('should have Docs text', () => {
+        render(<Home />) // ARRANGE
+    
+        const docsElement = screen.getByText('Docs') // ACT
+    
+        expect(docsElement).toBeInTheDocument(); // ASSERT
+    })
+
+    it('should contain the text "information"', () => {
+        render(<Home />) // ARRANGE
+    
+        const docsElement = screen.getByText(/information/i) // ACT
+    
+        expect(docsElement).toBeInTheDocument(); // ASSERT
+    })
+})
+```
