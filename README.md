@@ -106,5 +106,16 @@ describe('Home', () => {
 })
 ```
 
+## Roll back the jest-dom version to 5.16.5
+
+To solve the Jest extend matchers issue
+Fixing the error below:
+
+`Property 'toBeDisabled' does not exist on type 'JestMatchers<HTMLElement>'.ts(2339)`
+
+```bash
+npm i -D @testing-library/jest-dom@5.16.5
+```
+
 Reference:
 [Next.js with React Testing Library, Jest, TypeScript - Dave Gray](https://www.youtube.com/watch?v=AS79oJ3Fcf0)
