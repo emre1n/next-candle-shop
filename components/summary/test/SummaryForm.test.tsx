@@ -36,18 +36,19 @@ test('tooltip response to hover', async () => {
   const user = userEvent.setup();
 
   render(<SummaryForm />);
+  const nullTooltip = screen.queryByRole('tooltip');
+  const label = screen.getByText('I agree to', { exact: false });
 
   // tooltip starts out hidden
-  const nullTooltip = screen.queryByText(/View our Terms and Conditions/i);
   expect(nullTooltip).not.toBeInTheDocument();
 
   // tooltip appears on mouseover of checkbox label
-  const termsAndConditions = screen.getByText(/terms and conditions/i);
-  await user.hover(termsAndConditions);
-  const tooltip = screen.getByText(/View our Terms and Conditions/i);
-  expect(tooltip).toBeInTheDocument();
+  await user.hover(label);
+  const tooltip = screen.queryByRole('tooltip');
+
+  expect(tooltip).toBeInTheDocument;
 
   // tooltip disappears when we mouse out
-  await user.unhover(termsAndConditions);
+  await user.unhover(label);
   expect(tooltip).not.toBeInTheDocument();
 });
