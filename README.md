@@ -1,3 +1,5 @@
+# Candy Shop Project
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -17,7 +19,6 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Setting up Jest and React Testing Library
-
 
 ```bash
 npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-event jest jest-environment-jsdom ts-jest
@@ -67,6 +68,7 @@ import '@testing-library/jest-dom';
 ```bash
 npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library
 ```
+
 Add the `testing-library/react` and `jest-dom/recommended` plugins to `.eslintrc.json` file:
 
 ```json
