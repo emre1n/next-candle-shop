@@ -14,7 +14,7 @@ function SummaryForm() {
 
   return (
     <div>
-      <div className="form-control w-full">
+      <div className="form-control w-full flex justify-start">
         <label className="label cursor-pointer gap-2">
           <input
             type="checkbox"

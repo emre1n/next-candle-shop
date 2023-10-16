@@ -133,3 +133,19 @@ Add `"../../jest.setup.ts"` to `tsconfig.json`
 
 Reference:
 [Next.js with React Testing Library, Jest, TypeScript - Dave Gray](https://www.youtube.com/watch?v=AS79oJ3Fcf0)
+
+## Testing Library - User Interactions
+
+`user-event` is a companion library for Testing Library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser.
+
+### Differences from fireEvent
+
+`fireEvent` dispatches DOM events, whereas `user-event` simulates full interactions, which may fire multiple events and do additional checks along the way.
+
+Testing Library's built-in [`fireEvent`](https://testing-library.com/docs/dom-testing-library/api-events#fireevent) is a lightweight wrapper around the browser's low-level dispatchEvent API, which allows developers to trigger any event on any element. The problem is that the browser usually does more than just trigger one event for one interaction. For example, when a user types into a text box, the element has to be focused, and then keyboard and input events are fired and the selection and value on the element are manipulated as they type.
+
+`user-event` allows you to describe a user interaction instead of a concrete event. It adds visibility and interactability checks along the way and manipulates the DOM just like a user interaction in the browser would. It factors in that the browser e.g. wouldn't let a user click a hidden element or type in a disabled text box.
+
+This is [why you should use](https://ph-fritsche.github.io/blog/post/why-userevent) `user-event` to test interaction with your components.
+
+Reference: [RTL User Interactions](https://testing-library.com/docs/user-event/intro)
