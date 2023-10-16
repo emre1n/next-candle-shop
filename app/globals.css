@@ -11,3 +11,7 @@
 .hero-background {
   background: url('../images/hero-image.jpeg') center/cover no-repeat;
 }
+
+.content-container {
+  min-height: calc(100vh - 64px - 270px);
+}

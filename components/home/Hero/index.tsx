@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 function Hero() {
@@ -12,7 +13,9 @@ function Hero() {
           <p className="mb-5">
             Embrace the Warm Glow of Uniquely Crafted Memories
           </p>
-          <button className="btn btn-primary">Make your candle</button>
+          <Link href="/entry">
+            <button className="btn btn-primary">Make your candle</button>
+          </Link>
         </div>
       </div>
     </div>

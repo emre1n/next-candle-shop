@@ -20,7 +20,7 @@ export default function RootLayout({
     <html data-theme="cupcake" lang="en">
       <body className={inter.className}>
         <Navbar />
-        {children}
+        <main className="flex flex-col content-container">{children}</main>
         <Footer />
       </body>
     </html>
