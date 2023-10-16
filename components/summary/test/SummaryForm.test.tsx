@@ -31,3 +31,23 @@ test('Checkbox enables button on first click and disables on second click', asyn
   await user.click(checkbox);
   expect(confirmButton).toBeDisabled();
 });
+
+test('tooltip response to hover', async () => {
+  const user = userEvent.setup();
+
+  render(<SummaryForm />);
+
+  // tooltip starts out hidden
+  const nullTooltip = screen.queryByText(/View our Terms and Conditions/i);
+  expect(nullTooltip).not.toBeInTheDocument();
+
+  // tooltip appears on mouseover of checkbox label
+  const termsAndConditions = screen.getByText(/terms and conditions/i);
+  await user.hover(termsAndConditions);
+  const tooltip = screen.getByText(/View our Terms and Conditions/i);
+  expect(tooltip).toBeInTheDocument();
+
+  // tooltip disappears when we mouse out
+  await user.unhover(termsAndConditions);
+  expect(tooltip).not.toBeInTheDocument();
+});
