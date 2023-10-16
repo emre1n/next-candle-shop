@@ -131,6 +131,5 @@ Add `"../../jest.setup.ts"` to `tsconfig.json`
   ],
 ```
 
-
 Reference:
 [Next.js with React Testing Library, Jest, TypeScript - Dave Gray](https://www.youtube.com/watch?v=AS79oJ3Fcf0)
