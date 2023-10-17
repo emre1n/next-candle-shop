@@ -149,3 +149,15 @@ Testing Library's built-in [`fireEvent`](https://testing-library.com/docs/dom-te
 This is [why you should use](https://ph-fritsche.github.io/blog/post/why-userevent) `user-event` to test interaction with your components.
 
 Reference: [RTL User Interactions](https://testing-library.com/docs/user-event/intro)
+
+## Setting up Mock Service Worker
+
+- npm install msw
+- Create handlers
+- Create test server
+- Make sure test server listens during all tests
+  - reset after each test
+
+```bash
+npm i msw -D
+```
