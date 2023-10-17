@@ -19,42 +19,39 @@ function SummaryForm() {
   const checkboxLabel = (
     <span>
       I agree to
-      <span className="text-info-content"> Terms and Conditions</span>
+      <span className="text-info"> Terms and Conditions</span>
     </span>
   );
 
   return (
-    <div>
-      <div className="form-control w-full flex justify-start">
-        <label className="relative label cursor-pointer gap-2">
-          <input
-            type="checkbox"
-            className="checkbox"
-            onChange={e => setTcChecked(e.target.checked)}
-          />
+    <form className="form-control flex justify-start">
+      <label className="relative label cursor-pointer gap-2">
+        <input
+          type="checkbox"
+          className="checkbox"
+          onChange={e => setTcChecked(e.target.checked)}
+        />
 
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="label-text"
-          >
-            {checkboxLabel}
-            {isHovered ? (
-              <div
-                role="tooltip"
-                className="absolute text-sm text-base-100 bg-primary-content -right-[240px] top-0"
-                style={{ display: 'inline-block' }}
-              >
-                View our Terms and Conditions
-              </div>
-            ) : null}
-          </div>
-        </label>
-        <button className="btn btn-primary" disabled={!tcChecked}>
-          Confirm order
-        </button>
-      </div>
-    </div>
+        <div
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="label-text"
+        >
+          {checkboxLabel}
+          {isHovered ? (
+            <div
+              role="tooltip"
+              className="absolute hidden md:inline-block text-xs text-neutral-content bg-neutral -right-[200px] top-1/2 -translate-y-1/2 rounded p-[6px]"
+            >
+              View our Terms and Conditions
+            </div>
+          ) : null}
+        </div>
+      </label>
+      <button className="btn btn-primary" disabled={!tcChecked}>
+        Confirm order
+      </button>
+    </form>
   );
 }
 
