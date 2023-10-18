@@ -161,3 +161,8 @@ Reference: [RTL User Interactions](https://testing-library.com/docs/user-event/i
 ```bash
 npm i msw -D
 ```
+
+## Note on await & findBy
+
+When you are waiting for something to appear asynchronously on the page, you must use `await` and `findBy`
+And server connections are almost always async
