@@ -5,6 +5,7 @@ import axios from 'axios';
 import CupOption from '../CupOption';
 
 import config from '@/config';
+import FragranceOption from '../FragranceOption';
 
 interface ItemType {
   id: number;
@@ -63,7 +64,7 @@ function Options({ optionType }: TProps) {
   }, [optionType]);
 
   // @todo - replace 'null' with FragranceOption when available
-  const ItemComponent = optionType === 'cups' ? CupOption : null;
+  const ItemComponent = optionType === 'cups' ? CupOption : FragranceOption;
 
   const optionItems = items.map(item =>
     ItemComponent ? (
@@ -77,7 +78,7 @@ function Options({ optionType }: TProps) {
   );
 
   return (
-    <div className="flex flex-col flex-wrap gap-8 md:flex-row items-center justify-start p-8">
+    <div className="flex flex-col flex-wrap gap-8 sm:flex-row items-center justify-start p-8">
       {optionItems}
     </div>
   );

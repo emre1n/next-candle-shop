@@ -6,6 +6,7 @@ const EntryPage = () => {
   return (
     <>
       <Options optionType="cups" />
+      <Options optionType="fragrances" />
     </>
   );
 };
