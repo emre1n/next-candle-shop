@@ -4,9 +4,40 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CupOption from '../CupOption';
 
+import config from '@/config';
+
 interface ItemType {
-  name: string;
-  imagePath: string;
+  id: number;
+  attributes: {
+    name: string;
+    imagePath: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    image: {
+      data: {
+        id: number;
+        attributes: {
+          name: string;
+          alternativeText: string | null;
+          caption: string | null;
+          width: number | null;
+          height: number | null;
+          formats: Record<string, any> | null;
+          hash: string;
+          ext: string;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl: string | null;
+          provider: string;
+          provider_metadata: any | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+      };
+    };
+  };
 }
 
 interface TProps {
@@ -18,9 +49,13 @@ function Options({ optionType }: TProps) {
 
   // optionType is 'cups' or 'fragrances'
   useEffect(() => {
+    // Create a headers object with the Authorization header
+    const headers = {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    };
     axios
-      .get(`http://localhost:3030/${optionType}`)
-      .then(response => setItems(response.data))
+      .get(`${config.api}/api/${optionType}?populate=*`, { headers })
+      .then(response => setItems(response.data.data))
       .catch(error => {
         // @todo - handle error response
       });
@@ -32,9 +67,9 @@ function Options({ optionType }: TProps) {
   const optionItems = items.map(item =>
     ItemComponent ? (
       <ItemComponent
-        key={item.name}
-        name={item.name}
-        imagePath={item.imagePath}
+        key={item.attributes.name}
+        name={item.attributes.name}
+        imagePath={item.attributes.image.data.attributes.url}
       />
     ) : null
   );

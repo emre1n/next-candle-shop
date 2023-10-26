@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
+import config from '@/config';
+
 interface TProps {
   name: string;
   imagePath: string;
@@ -8,7 +10,7 @@ interface TProps {
 
 function CupOption({ name, imagePath }: TProps) {
   const imageProps = {
-    source: `http://localhost:3030/${imagePath}`,
+    source: `${config.api}${imagePath}`,
     alt: `${name} cup`,
   };
 
@@ -19,7 +21,7 @@ function CupOption({ name, imagePath }: TProps) {
         width={500}
         height={500}
         alt={imageProps.alt}
-      ></Image>
+      />
     </div>
   );
 }

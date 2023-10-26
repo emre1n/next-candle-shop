@@ -166,3 +166,14 @@ npm i msw -D
 
 When you are waiting for something to appear asynchronously on the page, you must use `await` and `findBy`
 And server connections are almost always async
+
+## Strapi Headless CMS Quickstart
+
+```bash
+npx create-strapi-app@latest my-project --quickstart
+```
+
+Quickstart creates a strapi headless cms with sqlite database
+
+For the first admin setup follow the link to the admin panel
+<http://localhost:1337/admin>
