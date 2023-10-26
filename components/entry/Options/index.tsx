@@ -11,6 +11,7 @@ interface ItemType {
   attributes: {
     name: string;
     imagePath: string;
+    description: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
@@ -69,12 +70,17 @@ function Options({ optionType }: TProps) {
       <ItemComponent
         key={item.attributes.name}
         name={item.attributes.name}
+        description={item.attributes.description}
         imagePath={item.attributes.image.data.attributes.url}
       />
     ) : null
   );
 
-  return <div>{optionItems}</div>;
+  return (
+    <div className="flex flex-col flex-wrap gap-8 md:flex-row items-center justify-start p-8">
+      {optionItems}
+    </div>
+  );
 }
 
 export default Options;
