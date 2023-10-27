@@ -50,7 +50,7 @@ function Options({ optionType }: TProps) {
   );
 
   return (
-    <div className="flex flex-col flex-wrap gap-8 sm:flex-row items-center justify-start p-8">
+    <div className="flex flex-col flex-wrap gap-8 sm:flex-row items-center justify-start">
       {optionItems}
     </div>
   );
