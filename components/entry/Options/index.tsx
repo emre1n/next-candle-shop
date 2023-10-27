@@ -1,5 +1,7 @@
 'use client';
 
+import { ItemType } from '@/libs/models/item.model';
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CupOption from '../CupOption';
@@ -7,40 +9,7 @@ import CupOption from '../CupOption';
 import config from '@/config';
 import FragranceOption from '../FragranceOption';
 
-interface ItemType {
-  id: number;
-  attributes: {
-    name: string;
-    imagePath: string;
-    description: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    image: {
-      data: {
-        id: number;
-        attributes: {
-          name: string;
-          alternativeText: string | null;
-          caption: string | null;
-          width: number | null;
-          height: number | null;
-          formats: Record<string, any> | null;
-          hash: string;
-          ext: string;
-          mime: string;
-          size: number;
-          url: string;
-          previewUrl: string | null;
-          provider: string;
-          provider_metadata: any | null;
-          createdAt: string;
-          updatedAt: string;
-        };
-      };
-    };
-  };
-}
+import AlertBanner from '@/components/common/AlertBanner';
 
 interface TProps {
   optionType: string; // @todo - write an enum for cups and fragrances
@@ -48,6 +17,7 @@ interface TProps {
 
 function Options({ optionType }: TProps) {
   const [items, setItems] = useState<ItemType[]>([]);
+  const [error, setError] = useState(false);
 
   // optionType is 'cups' or 'fragrances'
   useEffect(() => {
@@ -58,10 +28,12 @@ function Options({ optionType }: TProps) {
     axios
       .get(`${config.api}/api/${optionType}?populate=*`, { headers })
       .then(response => setItems(response.data.data))
-      .catch(error => {
-        // @todo - handle error response
-      });
+      .catch(error => setError(true));
   }, [optionType]);
+
+  if (error) {
+    return <AlertBanner message={''} variant={'alert-error'} />;
+  }
 
   // @todo - replace 'null' with FragranceOption when available
   const ItemComponent = optionType === 'cups' ? CupOption : FragranceOption;
