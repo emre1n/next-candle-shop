@@ -7,8 +7,10 @@ const mockData = {
           name: 'Charcoal',
           imagePath: '/images/cups/charcoal.avif',
           createdAt: '2023-10-18T12:52:33.365Z',
-          updatedAt: '2023-10-18T13:03:33.921Z',
+          updatedAt: '2023-10-28T09:13:40.296Z',
           publishedAt: '2023-10-18T12:53:45.785Z',
+          description: 'A rich, dark gray for added elegance',
+          price: 10,
           image: {
             data: {
               id: 1,
@@ -40,8 +42,10 @@ const mockData = {
           name: 'Cream',
           imagePath: '/images/cups/cream.avif',
           createdAt: '2023-10-18T12:53:31.597Z',
-          updatedAt: '2023-10-18T13:04:06.889Z',
+          updatedAt: '2023-10-28T09:13:49.908Z',
           publishedAt: '2023-10-18T12:53:52.328Z',
+          description: 'Soft and inviting, perfect for comfort',
+          price: 10,
           image: {
             data: {
               id: 2,
@@ -73,7 +77,7 @@ const mockData = {
         page: 1,
         pageSize: 25,
         pageCount: 1,
-        total: 2,
+        total: 5,
       },
     },
   },
@@ -84,10 +88,11 @@ const mockData = {
         attributes: {
           name: 'Cedar',
           createdAt: '2023-10-26T12:11:32.753Z',
-          updatedAt: '2023-10-26T12:11:33.795Z',
+          updatedAt: '2023-10-28T09:14:30.429Z',
           publishedAt: '2023-10-26T12:11:33.793Z',
           imagePath: '/images/fragrances/cedar.jpeg',
           description: 'Timeless, woody tranquility',
+          price: 5,
           image: {
             data: {
               id: 4,
@@ -152,10 +157,11 @@ const mockData = {
         attributes: {
           name: 'Coconut',
           createdAt: '2023-10-26T12:13:55.361Z',
-          updatedAt: '2023-10-26T12:18:27.678Z',
+          updatedAt: '2023-10-28T09:14:38.687Z',
           publishedAt: '2023-10-26T12:18:27.676Z',
           imagePath: '/images/fragrances/coconut.webp',
           description: 'Exotic tropical sweetness',
+          price: 5,
           image: {
             data: {
               id: 5,
@@ -220,10 +226,11 @@ const mockData = {
         attributes: {
           name: 'Grapefruit',
           createdAt: '2023-10-26T12:14:33.355Z',
-          updatedAt: '2023-10-26T12:21:00.966Z',
+          updatedAt: '2023-10-28T09:14:42.944Z',
           publishedAt: '2023-10-26T12:21:00.964Z',
           imagePath: '/images/fragrances/grapefruit.webp',
-          description: 'Zesty citrus invigoration',
+          description: 'Zesty, citrusy, and invigorating freshness',
+          price: 5,
           image: {
             data: {
               id: 6,
@@ -289,7 +296,7 @@ const mockData = {
         page: 1,
         pageSize: 25,
         pageCount: 1,
-        total: 3,
+        total: 4,
       },
     },
   },
