@@ -6,9 +6,10 @@ interface TProps {
   name: string;
   imagePath: string;
   description: string;
+  price: number;
 }
 
-function FragranceOption({ name, description, imagePath }: TProps) {
+function FragranceOption({ name, description, price, imagePath }: TProps) {
   const imageProps = {
     source: `${config.api}${imagePath}`,
     alt: `${name} fragrance`,
@@ -26,17 +27,23 @@ function FragranceOption({ name, description, imagePath }: TProps) {
           />
         </figure>
         <div className="card-body">
-          <p>{description}</p>
           <h2 className="card-title">
+            <label className="cursor-pointer" htmlFor={`id-${name}`}>
+              {name}
+            </label>
+          </h2>
+          <p>{description}</p>
+          <div className="card-actions justify-between">
             <input
               type="checkbox"
               name="checkbox"
               id={`id-${name}`}
               className="checkbox checkbox-primary"
             />
-            <label htmlFor={`id-${name}`}>{name}</label>
-          </h2>
-          <div className="card-actions justify-end"></div>
+            <div className="text-xl font-semibold text-primary-500">
+              ${price.toFixed(2)}
+            </div>
+          </div>
         </div>
       </div>
     </div>

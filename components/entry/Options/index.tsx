@@ -44,6 +44,7 @@ function Options({ optionType }: TProps) {
         key={item.attributes.name}
         name={item.attributes.name}
         description={item.attributes.description}
+        price={item.attributes.price}
         imagePath={item.attributes.image.data.attributes.url}
       />
     ) : null

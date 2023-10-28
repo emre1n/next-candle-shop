@@ -4,6 +4,7 @@ export interface ItemType {
     name: string;
     imagePath: string;
     description: string;
+    price: number;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
