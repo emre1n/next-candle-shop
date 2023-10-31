@@ -38,6 +38,8 @@ function Options({ optionType }: TProps) {
   // @todo - replace 'null' with FragranceOption when available
   const ItemComponent = optionType === 'cups' ? CupOption : FragranceOption;
 
+  const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
+
   const optionItems = items.map(item =>
     ItemComponent ? (
       <ItemComponent
@@ -51,9 +53,12 @@ function Options({ optionType }: TProps) {
   );
 
   return (
-    <div className="flex flex-col flex-wrap gap-8 sm:flex-row items-center justify-start">
-      {optionItems}
-    </div>
+    <>
+      <h2>{title}</h2>
+      <div className="flex flex-col flex-wrap gap-8 sm:flex-row items-center justify-start">
+        {optionItems}
+      </div>
+    </>
   );
 }
 
