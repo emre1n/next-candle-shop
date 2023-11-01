@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import config from '@/config';
+
+import { useOrderDetails } from '@/contexts/OrderDetails';
 
 interface TProps {
   name: string;
@@ -11,9 +13,15 @@ interface TProps {
 }
 
 function CupOption({ name, description, price, imagePath }: TProps) {
+  const { updateItemCount } = useOrderDetails();
+
   const imageProps = {
     source: `${config.api}${imagePath}`,
     alt: `${name} cup`,
+  };
+
+  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateItemCount(name, e.target.value ? 1 : 0, 'cups');
   };
 
   return (
@@ -40,6 +48,7 @@ function CupOption({ name, description, price, imagePath }: TProps) {
               name="radio"
               id={`id-${name}`}
               className="radio radio-primary"
+              onChange={handleRadioChange}
             />
             <div className="text-xl font-semibold text-primary-500">
               ${price.toFixed(2)}

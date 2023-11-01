@@ -10,6 +10,10 @@ import config from '@/config';
 import FragranceOption from '../FragranceOption';
 
 import AlertBanner from '@/components/common/AlertBanner';
+import { pricePerItem } from '@/constants';
+import { formatCurrency } from '../../../utils/index';
+
+import { useOrderDetails } from '@/contexts/OrderDetails';
 
 interface TProps {
   optionType: string; // @todo - write an enum for cups and fragrances
@@ -18,6 +22,7 @@ interface TProps {
 function Options({ optionType }: TProps) {
   const [items, setItems] = useState<ItemType[]>([]);
   const [error, setError] = useState(false);
+  const { totals } = useOrderDetails();
 
   // optionType is 'cups' or 'fragrances'
   useEffect(() => {
@@ -54,7 +59,14 @@ function Options({ optionType }: TProps) {
 
   return (
     <>
-      <h2>{title}</h2>
+      <div>
+        <h2>{title}</h2>
+        <p>{formatCurrency(pricePerItem[optionType])} each</p>
+        <p>
+          {title}: {formatCurrency(totals[optionType as keyof typeof totals])}
+        </p>
+      </div>
+
       <div className="flex flex-col flex-wrap gap-8 sm:flex-row items-center justify-start">
         {optionItems}
       </div>

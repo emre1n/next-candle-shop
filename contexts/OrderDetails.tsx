@@ -68,6 +68,7 @@ export const OrderDetailsProvider = ({ children }: TProps) => {
     const newOptionCounts = { ...optionCounts };
 
     // update the copy with the new information
+    optionType === 'cups' ? (newOptionCounts[optionType] = {}) : null;
     newOptionCounts[optionType][itemName] = newItemCount;
 
     // update the state with the updated copy
