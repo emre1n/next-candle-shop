@@ -25,3 +25,26 @@ test('update cup subtotal when cups change', async () => {
 
   expect(cupSubtotal).toHaveTextContent('10.00');
 });
+
+test('update fragrances subtotal when fragrances change', async () => {
+  const user = userEvent.setup();
+  render(<Options optionType="fragrances" />);
+
+  // make sure total starts out at $0.00
+  const fragrancesTotal = screen.getByText('Fragrances: $', { exact: false });
+  expect(fragrancesTotal).toHaveTextContent('0.00');
+
+  // add cedar and check subtotal
+  const cedarCheckbox = await screen.findByRole('checkbox', { name: 'Cedar' });
+  await user.click(cedarCheckbox);
+  expect(fragrancesTotal).toHaveTextContent('5.00');
+
+  // add coconut and check subtotal
+  const coconutCheckbox = screen.getByRole('checkbox', { name: 'Coconut' });
+  await user.click(coconutCheckbox);
+  expect(coconutCheckbox).toHaveTextContent('10.00');
+
+  // remove coconut and check subtotal
+  await user.click(coconutCheckbox);
+  expect(fragrancesTotal).toHaveTextContent('5.00');
+});
