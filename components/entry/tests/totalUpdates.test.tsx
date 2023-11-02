@@ -42,7 +42,7 @@ test('update fragrances subtotal when fragrances change', async () => {
   // add coconut and check subtotal
   const coconutCheckbox = screen.getByRole('checkbox', { name: 'Coconut' });
   await user.click(coconutCheckbox);
-  expect(coconutCheckbox).toHaveTextContent('10.00');
+  expect(fragrancesTotal).toHaveTextContent('10.00');
 
   // remove coconut and check subtotal
   await user.click(coconutCheckbox);

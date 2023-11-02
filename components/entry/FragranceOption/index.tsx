@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import config from '@/config';
+import { useOrderDetails } from '@/contexts/OrderDetails';
 
 interface TProps {
   name: string;
@@ -10,9 +11,15 @@ interface TProps {
 }
 
 function FragranceOption({ name, description, price, imagePath }: TProps) {
+  const { updateItemCount } = useOrderDetails();
+
   const imageProps = {
     source: `${config.api}${imagePath}`,
     alt: `${name} fragrance`,
+  };
+
+  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateItemCount(name, e.target.checked ? 1 : 0, 'fragrances');
   };
 
   return (
@@ -28,7 +35,10 @@ function FragranceOption({ name, description, price, imagePath }: TProps) {
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            <label className="cursor-pointer" htmlFor={`id-${name}`}>
+            <label
+              className="cursor-pointer"
+              htmlFor={`${name}-fragrances-checkbox`}
+            >
               {name}
             </label>
           </h2>
@@ -37,8 +47,9 @@ function FragranceOption({ name, description, price, imagePath }: TProps) {
             <input
               type="checkbox"
               name="checkbox"
-              id={`id-${name}`}
+              id={`${name}-fragrances-checkbox`}
               className="checkbox checkbox-primary"
+              onChange={handleRadioChange}
             />
             <div className="text-xl font-semibold text-primary-500">
               ${price.toFixed(2)}
