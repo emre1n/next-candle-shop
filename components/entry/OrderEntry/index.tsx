@@ -14,6 +14,7 @@ function OrderEntry() {
       <Options optionType="cups" />
       <Options optionType="fragrances" />
       <h2>Grand total: {formatCurrency(totals.cups + totals.fragrances)}</h2>
+      <button className="btn btn-active btn-primary w-1/4">Order Candle</button>
     </>
   );
 }
