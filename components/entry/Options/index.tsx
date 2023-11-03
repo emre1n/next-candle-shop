@@ -26,14 +26,27 @@ function Options({ optionType }: TProps) {
 
   // optionType is 'cups' or 'fragrances'
   useEffect(() => {
+    // Create an AbortController to attach to network request
+    const controller = new AbortController();
+
     // Create a headers object with the Authorization header
     const headers = {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     };
     axios
-      .get(`${config.api}/api/${optionType}?populate=*`, { headers })
+      .get(`${config.api}/api/${optionType}?populate=*`, {
+        headers,
+        signal: controller.signal,
+      })
       .then(response => setItems(response.data.data))
-      .catch(error => setError(true));
+      .catch(error => {
+        if (error.name !== 'CancelledError') setError(true);
+      });
+
+    // abort axios call on component unmount
+    return () => {
+      controller.abort();
+    };
   }, [optionType]);
 
   if (error) {
