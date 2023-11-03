@@ -28,7 +28,7 @@ function Options({ optionType }: TProps) {
   useEffect(() => {
     // Create an AbortController to attach to network request
     const controller = new AbortController();
-
+    const signal = controller.signal;
     // Create a headers object with the Authorization header
     const headers = {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
@@ -36,11 +36,11 @@ function Options({ optionType }: TProps) {
     axios
       .get(`${config.api}/api/${optionType}?populate=*`, {
         headers,
-        signal: controller.signal,
+        signal,
       })
       .then(response => setItems(response.data.data))
       .catch(error => {
-        if (error.name !== 'CancelledError') setError(true);
+        if (error.name !== 'CanceledError') setError(true);
       });
 
     // abort axios call on component unmount
@@ -69,7 +69,6 @@ function Options({ optionType }: TProps) {
       />
     ) : null
   );
-
   return (
     <>
       <div>
