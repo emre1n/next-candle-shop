@@ -3,6 +3,7 @@
 import config from '@/config';
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 type TOrderPhase = 'inProgress' | 'review' | 'completed';
@@ -15,6 +16,8 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
   const { resetOrder } = useOrderDetails();
   const [orderNumber, setOrderNumber] = useState(null);
   const [token, setToken] = useState(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     // Authorization POST request
@@ -52,13 +55,26 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
         .post(`${config.api}/api/orders`, dataOrder, {
           headers: headersOrder,
         })
-        .then(response => console.log(response))
+        .then(response => setOrderNumber(response.data.data.id))
         .catch(error => {
           console.log(error);
           // @todo - handle error here
         });
     }
   }, [token]);
+
+  function handleNewEnter() {
+    // clear the order details
+    resetOrder();
+
+    // send back to order page
+    setOrderPhase('inProgress');
+    router.push('/entry');
+  }
+
+  function handleHome() {
+    router.push('/');
+  }
 
   if (orderNumber) {
     return (
@@ -71,7 +87,17 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
           we are thrilled to craft the perfect ambiance for your home or special
           occasion.
         </p>
-        <button className="btn btn-active btn-accent">Create new order</button>
+        <div className="flex gap-4">
+          <button
+            onClick={handleNewEnter}
+            className="btn btn-active btn-accent"
+          >
+            Create new order
+          </button>
+          <button onClick={handleHome} className="btn btn-outline">
+            Home
+          </button>
+        </div>
       </div>
     );
   } else {
