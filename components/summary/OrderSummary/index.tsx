@@ -23,16 +23,23 @@ function OrderSummary() {
   const fragranceList = fragranceArray.map(key => <li key={key}>{key}</li>);
 
   return (
-    <>
-      <h1>Order Summary</h1>
-      <div>
+    <div className="flex flex-col gap-4 p-32">
+      <h1 className="text-4xl">Order Summary</h1>
+      <strong className="border-b border-gray-500">
         {cupList} Cup: {formatCurrency(totals.cups)}
+      </strong>
+      <div>
+        <ul>{fragranceList}</ul>
+        <strong className="border-b border-gray-500">
+          Fragrance Subtotal: {formatCurrency(totals.fragrances)}
+        </strong>
       </div>
-      <h2>Fragrances</h2>
-      <ul>{fragranceList}</ul>
-      <h2>Fragrance Subtotal: {formatCurrency(totals.fragrances)}</h2>
+
+      <strong className="text-2xl">
+        Grand Total: {formatCurrency(totals.cups + totals.fragrances)}
+      </strong>
       <SummaryForm />
-    </>
+    </div>
   );
 }
 
