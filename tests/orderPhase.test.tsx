@@ -1,4 +1,4 @@
-import EntryPage from '@/app/order/page';
+import OrderPage from '@/app/order/page';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -8,7 +8,7 @@ test('order phases for happy path', async () => {
   // Don't need to wrap in provider; already wrapped
 
   // destructure 'umount' from return value to use at the end of the test
-  const { unmount } = render(<EntryPage />);
+  const { unmount } = render(<OrderPage />);
 
   // add cup and fragrances
   const creamInput = await screen.findByRole('radio', { name: 'Cream' });
@@ -41,7 +41,7 @@ test('order phases for happy path', async () => {
   expect(fragrancesHeading).toBeInTheDocument();
 
   // check summary option items
-  expect(screen.getByText('Cream Cup: $0.00')).toBeInTheDocument();
+  expect(screen.getByText('Cream')).toBeInTheDocument();
   expect(screen.getByText('Cedar')).toBeInTheDocument();
   expect(screen.getByText('Coconut')).toBeInTheDocument();
 

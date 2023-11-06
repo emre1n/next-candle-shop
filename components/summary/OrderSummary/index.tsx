@@ -31,14 +31,15 @@ function OrderSummary({ setOrderPhase }: TProps) {
   return (
     <div className="flex flex-col gap-4 p-32">
       <h1 className="text-4xl">Order Summary</h1>
-      <strong className="border-b border-gray-500">
-        {cupList} Cup: {formatCurrency(totals.cups)}
-      </strong>
+      {cupList}
+      <h2 className="border-b border-gray-500">
+        Cup: {formatCurrency(totals.cups)}
+      </h2>
       <div>
         <ul>{fragranceList}</ul>
-        <strong className="border-b border-gray-500">
+        <h2 className="border-b border-gray-500">
           Fragrance Subtotal: {formatCurrency(totals.fragrances)}
-        </strong>
+        </h2>
       </div>
 
       <strong className="text-2xl">

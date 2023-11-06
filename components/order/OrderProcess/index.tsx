@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 
+import { OrderDetailsProvider } from '@/contexts/OrderDetails';
+
 import OrderEntry from '@/components/entry/OrderEntry';
 import OrderSummary from '@/components/summary/OrderSummary';
 import OrderConfirmation from '@/components/confirmation/OrderConfirmation';
@@ -27,9 +29,9 @@ function OrderProcess() {
   }
 
   return (
-    <>
+    <OrderDetailsProvider>
       <Component setOrderPhase={setOrderPhase} />
-    </>
+    </OrderDetailsProvider>
   );
 }
 

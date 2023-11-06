@@ -53,7 +53,7 @@ test('update fragrances subtotal when fragrances change', async () => {
 describe('grand total', () => {
   test('grand total starts at $0.00', () => {
     // Test that the total starts out at $0.00
-    const { unmount } = render(<OrderEntry />);
+    const { unmount } = render(<OrderEntry setOrderPhase={jest.fn()} />);
     const grandTotal = screen.getByRole('heading', { name: /Grand total: \$/ });
     expect(grandTotal).toHaveTextContent('0.00');
 
@@ -62,7 +62,7 @@ describe('grand total', () => {
 
   test('grand total updates properly if cup is added first', async () => {
     const user = userEvent.setup();
-    render(<OrderEntry />);
+    render(<OrderEntry setOrderPhase={jest.fn()} />);
     const grandTotal = screen.getByRole('heading', { name: /Grand total: \$/ });
 
     // select cream cup and check grand total
@@ -79,7 +79,7 @@ describe('grand total', () => {
   });
   test('grand total updates properly if fragrance is added first', async () => {
     const user = userEvent.setup();
-    render(<OrderEntry />);
+    render(<OrderEntry setOrderPhase={jest.fn()} />);
     const grandTotal = screen.getByRole('heading', { name: /Grand total: \$/ });
 
     // add cedar fragrance and check grand total
@@ -97,7 +97,7 @@ describe('grand total', () => {
   });
   test('grand total updates properly if item is removed', async () => {
     const user = userEvent.setup();
-    render(<OrderEntry />);
+    render(<OrderEntry setOrderPhase={jest.fn()} />);
 
     // select cream cup
     const creamInput = await screen.findByRole('radio', { name: 'Cream' });

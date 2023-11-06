@@ -72,7 +72,7 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
   if (orderNumber) {
     return (
       <div className="flex flex-col gap-8 justify-center items-center p-16">
-        <h1 className="text-5xl">Thank You!</h1>
+        <h1 className="text-5xl">Thank You</h1>
         <p>Your order number is #{orderNumber}</p>
         <p className="max-w-2xl text-center">
           Thank you for choosing Candle Enchantment to add a touch of
