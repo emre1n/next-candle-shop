@@ -5,14 +5,10 @@ import Options from '../Options';
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import { formatCurrency } from '@/utils';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 function OrderEntry() {
   const { totals } = useOrderDetails();
-  const router = useRouter();
-
-  function handleClick() {
-    router.push('/summary');
-  }
 
   return (
     <>
@@ -20,12 +16,11 @@ function OrderEntry() {
       <Options optionType="cups" />
       <Options optionType="fragrances" />
       <h2>Grand total: {formatCurrency(totals.cups + totals.fragrances)}</h2>
-      <button
-        onClick={handleClick}
-        className="btn btn-active btn-primary md:w-1/4"
-      >
-        Order Candle
-      </button>
+      <Link href={'/summary'}>
+        <button className="btn btn-active btn-primary md:w-1/4">
+          Order Candle
+        </button>
+      </Link>
     </>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
@@ -7,7 +8,7 @@ function SummaryForm() {
   const [tcChecked, setTcChecked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -25,10 +26,6 @@ function SummaryForm() {
       <span className="text-info"> Terms and Conditions</span>
     </span>
   );
-
-  function handleClick() {
-    router.push('/confirmation');
-  }
 
   return (
     <>
@@ -57,13 +54,11 @@ function SummaryForm() {
           </div>
         </label>
       </form>
-      <button
-        onClick={handleClick}
-        className="btn btn-primary"
-        disabled={!tcChecked}
-      >
-        Confirm order
-      </button>
+      <Link href={'/confirmation'}>
+        <button className="btn btn-primary" disabled={!tcChecked}>
+          Confirm order
+        </button>
+      </Link>
     </>
   );
 }

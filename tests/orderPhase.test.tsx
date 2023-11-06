@@ -1,7 +1,6 @@
+import EntryPage from '@/app/entry/page';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import App from 'next/app';
 
 test('order phases for happy path', async () => {
   const user = userEvent.setup();
@@ -9,7 +8,7 @@ test('order phases for happy path', async () => {
   // Don't need to wrap in provider; already wrapped
 
   // destructure 'umount' from return value to use at the end of the test
-  const { unmount } = render(<App />);
+  const { unmount } = render(<EntryPage />);
 
   // add cup and fragrances
   const creamInput = await screen.findByRole('radio', { name: 'Cream' });
