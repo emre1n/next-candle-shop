@@ -6,7 +6,13 @@ import SummaryForm from '../SummaryForm';
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import { formatCurrency } from '@/utils';
 
-function OrderSummary() {
+type TOrderPhase = 'inProgress' | 'review' | 'completed';
+
+type TProps = {
+  setOrderPhase: (orderPhase: TOrderPhase) => void;
+};
+
+function OrderSummary({ setOrderPhase }: TProps) {
   const { totals, optionCounts } = useOrderDetails();
 
   // const testObject = {
@@ -38,7 +44,7 @@ function OrderSummary() {
       <strong className="text-2xl">
         Grand Total: {formatCurrency(totals.cups + totals.fragrances)}
       </strong>
-      <SummaryForm />
+      <SummaryForm setOrderPhase={setOrderPhase} />
     </div>
   );
 }

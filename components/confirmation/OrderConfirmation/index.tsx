@@ -3,7 +3,7 @@
 import config from '@/config';
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 type TOrderPhase = 'inProgress' | 'review' | 'completed';
@@ -16,8 +16,6 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
   const { resetOrder } = useOrderDetails();
   const [orderNumber, setOrderNumber] = useState(null);
   const [token, setToken] = useState(null);
-
-  const router = useRouter();
 
   useEffect(() => {
     // Authorization POST request
@@ -63,17 +61,12 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
     }
   }, [token]);
 
-  function handleNewEnter() {
+  function handleClick() {
     // clear the order details
     resetOrder();
 
     // send back to order page
     setOrderPhase('inProgress');
-    router.push('/entry');
-  }
-
-  function handleHome() {
-    router.push('/');
   }
 
   if (orderNumber) {
@@ -88,15 +81,12 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
           occasion.
         </p>
         <div className="flex gap-4">
-          <button
-            onClick={handleNewEnter}
-            className="btn btn-active btn-accent"
-          >
+          <button onClick={handleClick} className="btn btn-active btn-accent">
             Create new order
           </button>
-          <button onClick={handleHome} className="btn btn-outline">
-            Home
-          </button>
+          <Link href={'/'}>
+            <button className="btn btn-outline">Home</button>
+          </Link>
         </div>
       </div>
     );

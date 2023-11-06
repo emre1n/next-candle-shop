@@ -1,4 +1,4 @@
-import EntryPage from '@/app/entry/page';
+import EntryPage from '@/app/order/page';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

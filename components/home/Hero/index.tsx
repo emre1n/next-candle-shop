@@ -13,7 +13,7 @@ function Hero() {
           <p className="mb-5">
             Embrace the Warm Glow of Uniquely Crafted Memories
           </p>
-          <Link href="/entry">
+          <Link href="/order">
             <button className="btn btn-primary">Make your candle</button>
           </Link>
         </div>
