@@ -169,6 +169,8 @@ And server connections are almost always async
 
 ## Strapi Headless CMS Quickstart
 
+[Quick Start Guide](https://docs.strapi.io/dev-docs/quick-start)
+
 ```bash
 npx create-strapi-app@latest my-project --quickstart
 ```
@@ -177,6 +179,12 @@ Quickstart creates a strapi headless cms with sqlite database
 
 For the first admin setup follow the link to the admin panel
 <http://localhost:1337/admin>
+
+### POST Request your collection type
+
+Execute a POST request on the order collection type in order to create a new order and get order id as response.
+
+[Strapi - Next.js Doc](https://docs.strapi.io/dev-docs/integrations/next-js#post-request-your-collection-type)
 
 ## Husky setup
 
