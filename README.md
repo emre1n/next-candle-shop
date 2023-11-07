@@ -195,3 +195,35 @@ Automatic (recommended) setup
 ```bash
 npx husky-init && npm install
 ```
+
+## lint-staged setup
+
+[lint-staged doc](https://github.com/lint-staged/lint-staged)
+
+```bash
+npm install --save-dev lint-staged # requires further setup
+```
+
+### Why
+
+Linting makes more sense when run before committing your code. By doing so you can ensure no errors go into the repository and enforce code style. But running a lint process on a whole project is slow, and linting results can be irrelevant. Ultimately you only want to lint files that will be committed.
+
+Create `.lintstagedrc.json` in the project root directory
+
+Add the following to test staged files with `npm test` script
+
+```json
+{
+  "**/*.{ts,js,tsx,jsx}": ["npm test"]
+}
+```
+
+Replace `npm test` with `npx lint-staged` in the husky `pre-commit` file
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged
+
+```

@@ -13,10 +13,14 @@ function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link href="#" className="hover:text-base-100">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="#" className="hover:text-base-100">
               About
             </Link>
           </li>
-
           <li>
             <Link href="#" className="hover:text-base-100">
               Contact

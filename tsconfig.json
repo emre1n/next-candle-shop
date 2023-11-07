@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "../../jest.setup.ts",
-    "mocks/handlers.ts"
+    "mocks/handlers.ts",
+    "lint-staged.config.js"
   ],
   "exclude": ["node_modules"]
 }

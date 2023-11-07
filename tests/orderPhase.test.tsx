@@ -1,6 +1,7 @@
-import OrderPage from '@/app/order/page';
+import OrderProcess from '../components/order/OrderProcess';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 test('order phases for happy path', async () => {
   const user = userEvent.setup();
@@ -8,7 +9,7 @@ test('order phases for happy path', async () => {
   // Don't need to wrap in provider; already wrapped
 
   // destructure 'umount' from return value to use at the end of the test
-  const { unmount } = render(<OrderPage />);
+  const { unmount } = render(<OrderProcess />);
 
   // add cup and fragrances
   const creamInput = await screen.findByRole('radio', { name: 'Cream' });
@@ -85,5 +86,8 @@ test('order phases for happy path', async () => {
 
   // unmount the component to trigger cleanup and avoid
   // "not wrapped in act()" error
+
   unmount();
 });
+
+// testing lint-staged
