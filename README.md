@@ -177,3 +177,13 @@ Quickstart creates a strapi headless cms with sqlite database
 
 For the first admin setup follow the link to the admin panel
 <http://localhost:1337/admin>
+
+## Husky setup
+
+[Getting started](https://typicode.github.io/husky/getting-started.html)
+
+Automatic (recommended) setup
+
+```bash
+npx husky-init && npm install
+```
