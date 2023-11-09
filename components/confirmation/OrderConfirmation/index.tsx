@@ -13,7 +13,7 @@ type TProps = {
 };
 
 function OrderConfirmation({ setOrderPhase }: TProps) {
-  const { resetOrder } = useOrderDetails();
+  const { resetOrder, optionCounts, totals } = useOrderDetails();
   const [orderNumber, setOrderNumber] = useState(null);
   const [token, setToken] = useState(null);
 
@@ -43,9 +43,9 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
 
       const dataOrder = {
         data: {
-          cup: 'Test',
-          fragrance: ['Cedar', 'Coconut'],
-          amount: 15,
+          cup: Object.keys(optionCounts.cups)[0],
+          fragrance: Object.keys(optionCounts.fragrances),
+          amount: totals.cups + totals.fragrances,
         },
       };
 
@@ -59,7 +59,7 @@ function OrderConfirmation({ setOrderPhase }: TProps) {
           // @todo - handle error here
         });
     }
-  }, [token]);
+  }, [token, optionCounts, totals]);
 
   function handleClick() {
     // clear the order details
